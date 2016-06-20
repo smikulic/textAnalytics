@@ -11,6 +11,6 @@ describe("Greeting Component", function() {
   it('allows us to set props', () => {
     // Use the method 'mount' to perform a full render
     const greetingComponent = mount(<Greeting name='Hello' />);
-    expect(greetingComponent.prop('name')).to.equal('Hello');;
+    expect(greetingComponent.prop('name')).to.equal('Hello');
   });
 });

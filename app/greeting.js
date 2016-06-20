@@ -7,7 +7,7 @@ var GreetingComponent = React.createClass({
         Hello, {this.props.name}!
       </div>
     );
-  },
+  }
 });
 
 export default GreetingComponent;
