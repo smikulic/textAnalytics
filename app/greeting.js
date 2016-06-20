@@ -1,6 +1,6 @@
 import React from "react";
 
-export default React.createClass({
+var GreetingComponent = React.createClass({
   render: function() {
     return (
       <div className="greeting">
@@ -9,3 +9,5 @@ export default React.createClass({
     );
   },
 });
+
+export default GreetingComponent;
