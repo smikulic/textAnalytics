@@ -1,1 +1,8 @@
-console.log("App loaded!")
+import React from "react";
+import ReactDom from "react-dom";
+import Greeting from "./greeting";
+
+ReactDom.render(
+  <Greeting name="World"/>,
+  document.getElementById("app")
+);
