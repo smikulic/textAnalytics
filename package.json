@@ -2,9 +2,11 @@
   "name": "hours_slept",
   "version": "1.0.0",
   "description": "Tracks the number of hours you have slept",
+  "repository": "git@github.com:smikulic/hours_slept.git",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --hot --inline"
   },
   "keywords": [
     "tracking",
@@ -13,6 +15,16 @@
   "author": "Sinisa Mikulic",
   "license": "ISC",
   "devDependencies": {
-    "webpack": "^1.13.1"
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "file-loader": "^0.8.5",
+    "react-hot-loader": "^1.3.0",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "react": "^15.1.0"
   }
 }
