@@ -1,8 +1,8 @@
 {
-  "name": "hours_slept",
+  "name": "stringStats",
   "version": "1.0.0",
-  "description": "Tracks the number of hours you have slept",
-  "repository": "git@github.com:smikulic/hours_slept.git",
+  "description": "Displays relevant stats dependant on input string",
+  "repository": "git@github.com:smikulic/stringStats.git",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/helpers/browser.js test/**.spec.js",
