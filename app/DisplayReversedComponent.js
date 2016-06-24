@@ -6,7 +6,7 @@ var DisplayReversedComponent = React.createClass({
   render () {
     return (
       <div className="display display-reversed">
-        {this.props.stringValue}
+        {this.props.stringValue.split("").reverse().join("")}
       </div>
     );
   }

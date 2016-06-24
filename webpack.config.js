@@ -22,6 +22,10 @@ module.exports = {
       	loaders: ['react-hot', 'babel?presets[]=react,presets[]=es2015,presets[]=stage-0']
     	},
       {
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass"]
+      },
+      {
         test: /\.html$/,
         loader: "file?name=[name].[ext]"
       }
