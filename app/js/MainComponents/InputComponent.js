@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDom from "react-dom";
 
 var InputComponent = React.createClass({
   displayName: 'InputComponent',
@@ -12,7 +11,7 @@ var InputComponent = React.createClass({
   render () {
     return (
       <div className="input-text">
-        <input type="text" placeholder="Please start typing here..." ref="textInput" onChange={this._handleChange} />
+        <input type="text" placeholder="Input text here..." onChange={this._handleChange} />
       </div>
     );
   }

@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDom from "react-dom";
-import InputComponent from "./InputComponent";
-import DisplayReversedComponent from "./DisplayReversedComponent";
-import StatsContainerComponent from "./StatsComponents/StatsContainerComponent";
+import InputComponent from "./js/MainComponents/InputComponent";
+import DisplayReversedComponent from "./js/ResultComponents/ResultReversedComponent";
+import StatsContainerComponent from "./js/StatsComponents/StatsContainerComponent";
 
 require("./styles/app.scss");
 
@@ -11,7 +11,7 @@ var App = React.createClass({
 
   getInitialState() {
       return {
-         inputText: " "
+         inputText: ""
       };
   },
 
@@ -32,7 +32,4 @@ var App = React.createClass({
   }
 });
 
-ReactDom.render(
-  <App />,
-  document.getElementById("app")
-);
+ReactDom.render(<App />, document.getElementById("app"));
