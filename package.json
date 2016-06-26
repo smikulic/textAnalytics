@@ -5,7 +5,6 @@
   "repository": "git@github.com:smikulic/stringStats.git",
   "main": "index.js",
   "scripts": {
-    "pretest": "npm install --only=dev",
     "test": "mocha test/helpers/browser.js test/**/**.spec.js --compilers css:test/helpers/nullCompiler.js",
     "start": "webpack-dev-server --hot --inline"
   },
