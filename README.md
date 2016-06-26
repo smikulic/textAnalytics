@@ -1,1 +1,1 @@
-[![Code Climate](https://codeclimate.com/github/smikulic/hours_slept/badges/gpa.svg)](https://codeclimate.com/github/smikulic/hours_slept)
+[![Code Climate](https://codeclimate.com/github/smikulic/stringStats/badges/gpa.svg)](https://codeclimate.com/github/smikulic/stringStats)
