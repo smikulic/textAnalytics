@@ -5,7 +5,7 @@ var CounterComponent = React.createClass({
 
   render () {
     return (
-      <div className="col-1-5 counter">
+      <div className="col-1-4 counter">
         <div className="label">{this.props.name}</div>
         <div>{this.props.numberValue}</div>
       </div>
