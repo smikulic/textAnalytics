@@ -13,27 +13,9 @@ body {
   width: 25%;
 }
 
-.input-text {
-  input {
-    padding: 15px 5px;
-    margin-bottom: 15px;
-    font-size: 14px;
-    width: 100%;
-    border: 0;
-    border-bottom: 1px dotted black;
-    outline: 0;
-  }
-}
 
-.stats-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  padding: 15px;
-  width: 100%;
 
-  .counter {
-    text-align: center;
-  }
-}
-
+// Modules
+@import 'modules/inputComponent';
+@import 'modules/resultContainerComponent';
+@import 'modules/statsContainerComponent';
