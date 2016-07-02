@@ -1,11 +1,14 @@
 .stats-container {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   padding: 15px;
   width: 100%;
+  background-color: white;
+  box-shadow: -3px -3px 24px 0px #000;
 
-  .counter {
-    text-align: center;
+  .label {
+    display: inline-block;
+    width: 90px;
   }
 }

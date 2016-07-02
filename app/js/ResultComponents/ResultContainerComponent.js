@@ -1,5 +1,7 @@
 import React from "react";
 import DisplayReversedComponent from "./_resultReversedComponent";
+import DisplayUppercasedComponent from "./_resultUppercasedComponent";
+import DisplayLowercasedComponent from "./_resultLowercasedComponent";
 
 class ResultContainerComponent extends React.Component {
   displayName: 'ResultContainerComponent'
@@ -21,24 +23,24 @@ class ResultContainerComponent extends React.Component {
   render () {
     let display = null;
     let cxReverse = 'result-tabs--tab';
-    let cxCapital = 'result-tabs--tab';
+    let cxUppercase = 'result-tabs--tab';
     let cxLowercase = 'result-tabs--tab';
 
     switch(this.state.resultView) {
       case 'reverse':
         display = <DisplayReversedComponent stringValue={this.props.stringValue} />;
         cxReverse += ' active';
-        cxCapital, cxLowercase = 'result-tabs--tab';
+        cxUppercase, cxLowercase = 'result-tabs--tab';
         break;
-      case 'capital':
-        display = 'Not available yet!';
-        cxCapital += ' active';
+      case 'uppercase':
+        display = <DisplayUppercasedComponent stringValue={this.props.stringValue} />;
+        cxUppercase += ' active';
         cxReverse, cxLowercase = 'result-tabs--tab';
         break;
       case 'lowercase':
-        display = 'Not available yet!';
+        display = <DisplayLowercasedComponent stringValue={this.props.stringValue} />;
         cxLowercase += ' active';
-        cxReverse, cxCapital = 'result-tabs--tab';
+        cxReverse, cxUppercase = 'result-tabs--tab';
         break;
       default:
         display = null;
@@ -51,9 +53,9 @@ class ResultContainerComponent extends React.Component {
             onClick={this._handleClick.bind(this, 'reverse')}>
             Reverse
           </div>
-          <div key="tab-capital" className={cxCapital}
-            onClick={this._handleClick.bind(this, 'capital')}>
-            Capital
+          <div key="tab-uppercase" className={cxUppercase}
+            onClick={this._handleClick.bind(this, 'uppercase')}>
+            Uppercase
           </div>
           <div key="tab-lowercase" className={cxLowercase}
             onClick={this._handleClick.bind(this, 'lowercase')}>

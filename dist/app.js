@@ -20499,7 +20499,9 @@
 	    key: "_handleClick",
 	    value: function () {
 	      function _handleClick(index, event) {
-	        //console.log(index, event);
+	        this.setState({
+	          resultView: index
+	        });
 	      }
 
 	      return _handleClick;
@@ -20509,16 +20511,25 @@
 	    value: function () {
 	      function render() {
 	        var display = null;
+	        var cxReverse = 'result-tabs--tab';
+	        var cxCapital = 'result-tabs--tab';
+	        var cxLowercase = 'result-tabs--tab';
 
 	        switch (this.state.resultView) {
 	          case 'reverse':
 	            display = _react2["default"].createElement(_resultReversedComponent2["default"], { stringValue: this.props.stringValue });
+	            cxReverse += ' active';
+	            cxCapital, cxLowercase = 'result-tabs--tab';
 	            break;
 	          case 'capital':
 	            display = 'Not available yet!';
+	            cxCapital += ' active';
+	            cxReverse, cxLowercase = 'result-tabs--tab';
 	            break;
 	          case 'lowercase':
 	            display = 'Not available yet!';
+	            cxLowercase += ' active';
+	            cxReverse, cxCapital = 'result-tabs--tab';
 	            break;
 	          default:
 	            display = null;
@@ -20529,23 +20540,23 @@
 	          { className: "results" },
 	          _react2["default"].createElement(
 	            "div",
-	            { className: "results-tabs" },
+	            { className: "result-tabs" },
 	            _react2["default"].createElement(
 	              "div",
-	              { key: "tab-reverse", className: "results-tabs--tab",
-	                onClick: this._handleClick.bind(this, 'tab-reverse') },
+	              { key: "tab-reverse", className: cxReverse,
+	                onClick: this._handleClick.bind(this, 'reverse') },
 	              "Reverse"
 	            ),
 	            _react2["default"].createElement(
 	              "div",
-	              { className: "results-tabs--tab", ref: "capital",
-	                onClick: this._handleClick },
+	              { key: "tab-capital", className: cxCapital,
+	                onClick: this._handleClick.bind(this, 'capital') },
 	              "Capital"
 	            ),
 	            _react2["default"].createElement(
 	              "div",
-	              { className: "results-tabs--tab", ref: "lowercase",
-	                onClick: this._handleClick },
+	              { key: "tab-lowercase", className: cxLowercase,
+	                onClick: this._handleClick.bind(this, 'lowercase') },
 	              "Lowercase"
 	            )
 	          ),
@@ -20592,11 +20603,6 @@
 	      return _react2["default"].createElement(
 	        "div",
 	        { className: "result-reversed" },
-	        _react2["default"].createElement(
-	          "h3",
-	          null,
-	          "Reversed: "
-	        ),
 	        _react2["default"].createElement(
 	          "div",
 	          { className: "result" },

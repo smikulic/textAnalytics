@@ -1,7 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+html {
+  height: 100vh;
+  font-family: 'Lato', sans-serif;
+  background-color: #77B9E0;
+}
 body {
   width: 90%;
   max-width: 960px;
   margin: 30px auto;
+}
+::selection {
+  background: #b7f7ff;
 }
 
 .col-1-5 {

@@ -22,6 +22,18 @@ body {
   outline: 0;
   resize: none; }
 
+.results .result-tabs {
+  margin-bottom: 15px; }
+
+.results .result-tabs .result-tabs--tab {
+  display: inline-block;
+  margin-right: 15px;
+  cursor: pointer; }
+
+.results .result-tabs .result-tabs--tab:hover,
+.results .result-tabs .result-tabs--tab.active {
+  border-bottom: 1px solid black; }
+
 .stats-container {
   position: fixed;
   bottom: 0;

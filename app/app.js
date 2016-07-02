@@ -10,23 +10,28 @@ var App = React.createClass({
   displayName: 'App',
 
   getInitialState() {
-      return {
-         inputText: ""
-      };
+    return {
+      inputText: "",
+      occurances: {}
+    };
   },
 
-  _handleInputUpdate (inputValue) {
-    this.setState({ inputText: inputValue });
+  _handleInputUpdate (inputValue, occurancesObject) {
+    this.setState({ 
+      inputText: inputValue, 
+      occurances: occurancesObject 
+    });
   },
 
   render() {
     let stringValue = this.state.inputText;
+    let occurances = this.state.occurances;
 
     return (
       <div className="main-container">
           <InputComponent updateInput={this._handleInputUpdate} />
           <ResultContainerComponent stringValue={stringValue} />
-          <StatsContainerComponent stringValue={stringValue} />
+          <StatsContainerComponent stringValue={stringValue} occurances={occurances} />
       </div>
     );
   }
