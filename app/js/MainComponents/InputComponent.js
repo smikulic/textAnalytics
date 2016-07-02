@@ -11,7 +11,7 @@ var InputComponent = React.createClass({
   render () {
     return (
       <div className="input-text">
-        <input type="text" placeholder="Input text here..." onChange={this._handleChange} />
+        <textarea placeholder="Input text here..." onChange={this._handleChange}></textarea>
       </div>
     );
   }
