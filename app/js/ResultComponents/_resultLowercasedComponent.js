@@ -7,7 +7,6 @@ var DisplayLowercasedComponent = React.createClass({
     return (
       <div className="result-lowercased">
         <div className="result">{this.props.stringValue.toLowerCase()}</div>
-        
       </div>
     );
   }

@@ -1,6 +1,8 @@
 import React from "react";
 import CounterComponent from "./_counterComponent";
 
+const BLACKLISTED_KEYWORDS = ['and', 'the', 'i', 'a', 'of', 'on', 'to', 'is'];
+
 var ResultStatsComponent = React.createClass({
   displayName: 'ResultStatsComponent',
 
@@ -39,45 +41,61 @@ var ResultStatsComponent = React.createClass({
       readTime = this._calculateReadTime(wordCount, averageWordsPerMinute);
     }
 
-    // Top five word occurances
+    // Loop through all word occurances
     for (var word in wordOccurances) {
-      console.log(word)
-      sortedWordOccurances.push([word, wordOccurances[word]])
-      sortedWordOccurances.sort(
-        function(a, b) {
-          return a[1] - b[1]
-        }
-      )
+      // Check if word is blacklisted from occurances
+      if (BLACKLISTED_KEYWORDS.indexOf(word) > -1) {
+        // In the array! do nothing
+      } else {
+        sortedWordOccurances.push([word, wordOccurances[word]]);
+        sortedWordOccurances.sort(
+          function(a, b) {
+            return a[1] - b[1]
+          }
+        );
+      }
     }
 
-    if (sortedWordOccurances.length > topWordOccurancesLimit) {
-      topWordOccurances = sortedWordOccurances.slice(sortedWordOccurances.length - topWordOccurancesLimit, sortedWordOccurances.length);  
+    // Sort by amount of words appeared
+    let sortedWordOccurancesCount = sortedWordOccurances.length;
+    if (sortedWordOccurancesCount > topWordOccurancesLimit) {
+      topWordOccurances = sortedWordOccurances.slice(sortedWordOccurancesCount - topWordOccurancesLimit, sortedWordOccurancesCount);  
     } else {
       topWordOccurances = sortedWordOccurances;
     }
 
+    // Top five word occurances display
     topWordsDisplay = topWordOccurances.map( (wordData, index) => {
       let key = "occurance-" + index;
       let result = (
-        <li key={key}>{wordData[0]}: {wordData[1]}</li>
+        <li key={key} className="col-1-5">
+          <div>{wordData[0]}</div>
+          <div className="number">
+            {wordData[1]} 
+            <span className="percentage">({Math.round(wordData[1] / wordCount * 100, 2)}%)</span>
+            </div>
+        </li>
       );
 
       return result;
     });
 
-
     return (
-      <div className="stats-container">
+      <div className="result-stats">
         <div className="col-1-4">
           <CounterComponent name="Characters" numberValue={charCount} />
+        </div>
+        <div className="col-1-4">
           <CounterComponent name="Words" numberValue={wordCount} />
         </div>
         <div className="col-1-4">
           <CounterComponent name="Sentences" numberValue={sentenceCount} />
+        </div>
+        <div className="col-1-4">
           <CounterComponent name="Read time" numberValue={readTime} />
         </div>
-        <div className="col-4-4">
-          Keyword occurances: 
+        <div className="col-1-1">
+          Keyword density
           <ul>{topWordsDisplay}</ul>
         </div>
       </div>

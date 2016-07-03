@@ -64,10 +64,6 @@
 
 	var _ResultContainerComponent2 = _interopRequireDefault(_ResultContainerComponent);
 
-	var _StatsContainerComponent = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./js/StatsComponents/StatsContainerComponent\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-	var _StatsContainerComponent2 = _interopRequireDefault(_StatsContainerComponent);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 	__webpack_require__(175);
@@ -20547,6 +20543,8 @@
 	    value: function () {
 	      function render() {
 	        var display = null;
+	        var stringValueProp = this.props.stringValue;
+	        var occurancesProp = this.props.occurances;
 	        var cxStats = 'result-tabs--tab';
 	        var cxReverse = 'result-tabs--tab';
 	        var cxUppercase = 'result-tabs--tab';
@@ -20554,19 +20552,19 @@
 
 	        switch (this.state.resultView) {
 	          case 'reverse':
-	            display = _react2["default"].createElement(_resultReversedComponent2["default"], { stringValue: this.props.stringValue });
+	            display = _react2["default"].createElement(_resultReversedComponent2["default"], { stringValue: stringValueProp });
 	            cxReverse += ' active';
 	            break;
 	          case 'uppercase':
-	            display = _react2["default"].createElement(_resultUppercasedComponent2["default"], { stringValue: this.props.stringValue });
+	            display = _react2["default"].createElement(_resultUppercasedComponent2["default"], { stringValue: stringValueProp });
 	            cxUppercase += ' active';
 	            break;
 	          case 'lowercase':
-	            display = _react2["default"].createElement(_resultLowercasedComponent2["default"], { stringValue: this.props.stringValue });
+	            display = _react2["default"].createElement(_resultLowercasedComponent2["default"], { stringValue: stringValueProp });
 	            cxLowercase += ' active';
 	            break;
 	          default:
-	            display = _react2["default"].createElement(_resultStatsComponent2["default"], { stringValue: this.props.stringValue });
+	            display = _react2["default"].createElement(_resultStatsComponent2["default"], { stringValue: stringValueProp, occurances: occurancesProp });
 	            cxStats += ' active';
 	        }
 
@@ -20640,6 +20638,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+	var BLACKLISTED_KEYWORDS = ['and', 'the', 'i', 'a', 'of', 'on', 'to', 'is'];
+
 	var ResultStatsComponent = _react2["default"].createClass({
 	  displayName: 'ResultStatsComponent',
 
@@ -20682,29 +20682,46 @@
 	        readTime = this._calculateReadTime(wordCount, averageWordsPerMinute);
 	      }
 
-	      // Top five word occurances
+	      // Loop through all word occurances
 	      for (var word in wordOccurances) {
-	        console.log(word);
-	        sortedWordOccurances.push([word, wordOccurances[word]]);
-	        sortedWordOccurances.sort(function (a, b) {
-	          return a[1] - b[1];
-	        });
+	        // Check if word is blacklisted from occurances
+	        if (BLACKLISTED_KEYWORDS.indexOf(word) > -1) {
+	          // In the array! do nothing
+	        } else {
+	          sortedWordOccurances.push([word, wordOccurances[word]]);
+	          sortedWordOccurances.sort(function (a, b) {
+	            return a[1] - b[1];
+	          });
+	        }
 	      }
 
-	      if (sortedWordOccurances.length > topWordOccurancesLimit) {
-	        topWordOccurances = sortedWordOccurances.slice(sortedWordOccurances.length - topWordOccurancesLimit, sortedWordOccurances.length);
+	      // Sort by amount of words appeared
+	      var sortedWordOccurancesCount = sortedWordOccurances.length;
+	      if (sortedWordOccurancesCount > topWordOccurancesLimit) {
+	        topWordOccurances = sortedWordOccurances.slice(sortedWordOccurancesCount - topWordOccurancesLimit, sortedWordOccurancesCount);
 	      } else {
 	        topWordOccurances = sortedWordOccurances;
 	      }
 
+	      // Top five word occurances display
 	      topWordsDisplay = topWordOccurances.map(function (wordData, index) {
 	        var key = "occurance-" + index;
 	        var result = _react2["default"].createElement(
 	          "li",
-	          { key: key },
-	          wordData[0],
-	          ": ",
-	          wordData[1]
+	          { key: key, className: "col-1-5" },
+	          _react2["default"].createElement(
+	            "div",
+	            null,
+	            wordData[0]
+	          ),
+	          _react2["default"].createElement(
+	            "div",
+	            null,
+	            wordData[1],
+	            " (",
+	            Math.round(wordData[1] / wordCount * 100, 2),
+	            "%)"
+	          )
 	        );
 
 	        return result;
@@ -20712,23 +20729,31 @@
 
 	      return _react2["default"].createElement(
 	        "div",
-	        { className: "stats-container" },
+	        { className: "result-stats" },
 	        _react2["default"].createElement(
 	          "div",
 	          { className: "col-1-4" },
-	          _react2["default"].createElement(_counterComponent2["default"], { name: "Characters", numberValue: charCount }),
+	          _react2["default"].createElement(_counterComponent2["default"], { name: "Characters", numberValue: charCount })
+	        ),
+	        _react2["default"].createElement(
+	          "div",
+	          { className: "col-1-4" },
 	          _react2["default"].createElement(_counterComponent2["default"], { name: "Words", numberValue: wordCount })
 	        ),
 	        _react2["default"].createElement(
 	          "div",
 	          { className: "col-1-4" },
-	          _react2["default"].createElement(_counterComponent2["default"], { name: "Sentences", numberValue: sentenceCount }),
+	          _react2["default"].createElement(_counterComponent2["default"], { name: "Sentences", numberValue: sentenceCount })
+	        ),
+	        _react2["default"].createElement(
+	          "div",
+	          { className: "col-1-4" },
 	          _react2["default"].createElement(_counterComponent2["default"], { name: "Read time", numberValue: readTime })
 	        ),
 	        _react2["default"].createElement(
 	          "div",
-	          { className: "col-4-4" },
-	          "Keyword occurances:",
+	          { className: "col-1-1" },
+	          "Keyword density",
 	          _react2["default"].createElement(
 	            "ul",
 	            null,
@@ -20773,13 +20798,12 @@
 	        "div",
 	        { className: "counter" },
 	        _react2["default"].createElement(
-	          "span",
-	          { className: "label" },
-	          this.props.name,
-	          ": "
+	          "div",
+	          null,
+	          this.props.name
 	        ),
 	        _react2["default"].createElement(
-	          "span",
+	          "div",
 	          null,
 	          this.props.numberValue
 	        )

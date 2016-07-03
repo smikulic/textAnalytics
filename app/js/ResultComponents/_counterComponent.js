@@ -6,8 +6,8 @@ var CounterComponent = React.createClass({
   render () {
     return (
       <div className="counter">
-        <span className="label">{this.props.name}: </span>
-        <span>{this.props.numberValue}</span>
+        <div>{this.props.name}</div>
+        <div className="number">{this.props.numberValue}</div>
       </div>
     );
   }

@@ -12,7 +12,6 @@ describe("CounterComponent", () => {
 
   it("Contains classes", () => {
     expect(CounterComponentMounted.find('.counter').length).to.equal(1);
-    expect(CounterComponentMounted.find('.label').length).to.equal(1);
   });
 
   it('Should have name and a numberValue props', () => {

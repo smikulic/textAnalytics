@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);html {
   height: 100vh;
   font-family: 'Lato', sans-serif;
-  background-color: #77B9E0; }
+  background-color: #dce7ec; }
 
 body {
   width: 90%;
@@ -11,13 +11,44 @@ body {
 ::selection {
   background: #b7f7ff; }
 
-.col-1-5 {
+ul {
+  margin: 0;
+  padding: 0; }
+  ul li {
+    list-style-type: none; }
+
+.col-1-4, .col-2-4, .col-3-4, .col-4-4,
+.col-1-5, .col-2-5, .col-3-5, .col-4-5, .col-5-5 {
   display: inline-block;
-  width: 20%; }
+  margin-bottom: 15px; }
 
 .col-1-4 {
-  display: inline-block;
   width: 25%; }
+
+.col-2-4 {
+  width: 50%; }
+
+.col-2-4 {
+  width: 75%; }
+
+.col-1-5 {
+  width: 20%; }
+
+.col-2-5 {
+  width: 40%; }
+
+.col-3-5 {
+  width: 60%; }
+
+.col-4-5 {
+  width: 80%; }
+
+.col-1-1 {
+  width: 100%; }
+
+.label {
+  display: inline-block;
+  width: 200px; }
 
 .input-text textarea {
   padding: 15px;
@@ -42,15 +73,3 @@ body {
 .results .result-tabs .result-tabs--tab:hover,
 .results .result-tabs .result-tabs--tab.active {
   border-bottom: 1px solid black; }
-
-.stats-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 15px;
-  width: 100%;
-  background-color: white;
-  box-shadow: -3px -3px 24px 0px #000; }
-  .stats-container .label {
-    display: inline-block;
-    width: 90px; }

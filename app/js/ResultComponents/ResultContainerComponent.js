@@ -23,6 +23,8 @@ class ResultContainerComponent extends React.Component {
 
   render () {
     let display = null;
+    let stringValueProp = this.props.stringValue;
+    let occurancesProp = this.props.occurances;
     let cxStats = 'result-tabs--tab';
     let cxReverse = 'result-tabs--tab';
     let cxUppercase = 'result-tabs--tab';
@@ -30,19 +32,19 @@ class ResultContainerComponent extends React.Component {
 
     switch(this.state.resultView) {
       case 'reverse':
-        display = <DisplayReversedComponent stringValue={this.props.stringValue} />;
+        display = <DisplayReversedComponent stringValue={stringValueProp} />;
         cxReverse += ' active';
         break;
       case 'uppercase':
-        display = <DisplayUppercasedComponent stringValue={this.props.stringValue} />;
+        display = <DisplayUppercasedComponent stringValue={stringValueProp} />;
         cxUppercase += ' active';
         break;
       case 'lowercase':
-        display = <DisplayLowercasedComponent stringValue={this.props.stringValue} />;
+        display = <DisplayLowercasedComponent stringValue={stringValueProp} />;
         cxLowercase += ' active';
         break;
       default:
-        display = <DisplayStatsComponent stringValue={this.props.stringValue} />;
+        display = <DisplayStatsComponent stringValue={stringValueProp} occurances={occurancesProp} />;
         cxStats += ' active';
     }
 
