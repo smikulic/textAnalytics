@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow, mount, render } from 'enzyme';
-import ResultReversedComponent from '../../app/js/ResultComponents/ResultReversedComponent';
+import ResultReversedComponent from '../../app/js/ResultComponents/_resultReversedComponent';
 
 describe("ResultReversedComponent", () => {
   // Use the method 'mount' to perform a full render

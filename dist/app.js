@@ -64,13 +64,9 @@
 
 	var _ResultContainerComponent2 = _interopRequireDefault(_ResultContainerComponent);
 
-	var _StatsContainerComponent = __webpack_require__(171);
-
-	var _StatsContainerComponent2 = _interopRequireDefault(_StatsContainerComponent);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	__webpack_require__(173);
+	__webpack_require__(175);
 
 	var App = _react2["default"].createClass({
 	  displayName: 'App',
@@ -78,15 +74,19 @@
 	  getInitialState: function () {
 	    function getInitialState() {
 	      return {
-	        inputText: ""
+	        inputText: "",
+	        occurances: {}
 	      };
 	    }
 
 	    return getInitialState;
 	  }(),
 	  _handleInputUpdate: function () {
-	    function _handleInputUpdate(inputValue) {
-	      this.setState({ inputText: inputValue });
+	    function _handleInputUpdate(inputValue, occurancesObject) {
+	      this.setState({
+	        inputText: inputValue,
+	        occurances: occurancesObject
+	      });
 	    }
 
 	    return _handleInputUpdate;
@@ -94,13 +94,13 @@
 	  render: function () {
 	    function render() {
 	      var stringValue = this.state.inputText;
+	      var occurances = this.state.occurances;
 
 	      return _react2["default"].createElement(
 	        "div",
 	        { className: "main-container" },
 	        _react2["default"].createElement(_InputComponent2["default"], { updateInput: this._handleInputUpdate }),
-	        _react2["default"].createElement(_ResultContainerComponent2["default"], { stringValue: stringValue }),
-	        _react2["default"].createElement(_StatsContainerComponent2["default"], { stringValue: stringValue })
+	        _react2["default"].createElement(_ResultContainerComponent2["default"], { stringValue: stringValue, occurances: occurances })
 	      );
 	    }
 
@@ -20426,10 +20426,30 @@
 	var InputComponent = _react2["default"].createClass({
 	  displayName: 'InputComponent',
 
+	  _updateOccurances: function () {
+	    function _updateOccurances(text) {
+	      var wordsArray = text.match(/\w+/g);
+	      var occurancesObject = {};
+
+	      for (var i = 0; i < wordsArray.length; i++) {
+	        var word = wordsArray[i].toLowerCase();
+	        if (occurancesObject.hasOwnProperty(word)) {
+	          occurancesObject[word] += 1;
+	        } else {
+	          occurancesObject[word] = 1;
+	        }
+	      }
+	      return occurancesObject;
+	    }
+
+	    return _updateOccurances;
+	  }(),
 	  _handleChange: function () {
 	    function _handleChange(e) {
 	      var value = e.target.value;
-	      this.props.updateInput(value);
+	      var occurancesObject = this._updateOccurances(value);
+
+	      this.props.updateInput(value, occurancesObject);
 	    }
 
 	    return _handleChange;
@@ -20439,7 +20459,7 @@
 	      return _react2["default"].createElement(
 	        "div",
 	        { className: "input-text" },
-	        _react2["default"].createElement("textarea", { placeholder: "Input text here...", onChange: this._handleChange })
+	        _react2["default"].createElement("textarea", { placeholder: "Enter text (copy and paste is fine) here...", onChange: this._handleChange })
 	      );
 	    }
 
@@ -20469,9 +20489,21 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _resultReversedComponent = __webpack_require__(170);
+	var _resultStatsComponent = __webpack_require__(170);
+
+	var _resultStatsComponent2 = _interopRequireDefault(_resultStatsComponent);
+
+	var _resultReversedComponent = __webpack_require__(172);
 
 	var _resultReversedComponent2 = _interopRequireDefault(_resultReversedComponent);
+
+	var _resultUppercasedComponent = __webpack_require__(173);
+
+	var _resultUppercasedComponent2 = _interopRequireDefault(_resultUppercasedComponent);
+
+	var _resultLowercasedComponent = __webpack_require__(174);
+
+	var _resultLowercasedComponent2 = _interopRequireDefault(_resultLowercasedComponent);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -20511,28 +20543,29 @@
 	    value: function () {
 	      function render() {
 	        var display = null;
+	        var stringValueProp = this.props.stringValue;
+	        var occurancesProp = this.props.occurances;
+	        var cxStats = 'result-tabs--tab';
 	        var cxReverse = 'result-tabs--tab';
-	        var cxCapital = 'result-tabs--tab';
+	        var cxUppercase = 'result-tabs--tab';
 	        var cxLowercase = 'result-tabs--tab';
 
 	        switch (this.state.resultView) {
 	          case 'reverse':
-	            display = _react2["default"].createElement(_resultReversedComponent2["default"], { stringValue: this.props.stringValue });
+	            display = _react2["default"].createElement(_resultReversedComponent2["default"], { stringValue: stringValueProp });
 	            cxReverse += ' active';
-	            cxCapital, cxLowercase = 'result-tabs--tab';
 	            break;
-	          case 'capital':
-	            display = 'Not available yet!';
-	            cxCapital += ' active';
-	            cxReverse, cxLowercase = 'result-tabs--tab';
+	          case 'uppercase':
+	            display = _react2["default"].createElement(_resultUppercasedComponent2["default"], { stringValue: stringValueProp });
+	            cxUppercase += ' active';
 	            break;
 	          case 'lowercase':
-	            display = 'Not available yet!';
+	            display = _react2["default"].createElement(_resultLowercasedComponent2["default"], { stringValue: stringValueProp });
 	            cxLowercase += ' active';
-	            cxReverse, cxCapital = 'result-tabs--tab';
 	            break;
 	          default:
-	            display = null;
+	            display = _react2["default"].createElement(_resultStatsComponent2["default"], { stringValue: stringValueProp, occurances: occurancesProp });
+	            cxStats += ' active';
 	        }
 
 	        return _react2["default"].createElement(
@@ -20543,15 +20576,21 @@
 	            { className: "result-tabs" },
 	            _react2["default"].createElement(
 	              "div",
+	              { key: "tab-stats", className: cxStats,
+	                onClick: this._handleClick.bind(this, 'stats') },
+	              "Text Analytics"
+	            ),
+	            _react2["default"].createElement(
+	              "div",
 	              { key: "tab-reverse", className: cxReverse,
 	                onClick: this._handleClick.bind(this, 'reverse') },
 	              "Reverse"
 	            ),
 	            _react2["default"].createElement(
 	              "div",
-	              { key: "tab-capital", className: cxCapital,
-	                onClick: this._handleClick.bind(this, 'capital') },
-	              "Capital"
+	              { key: "tab-uppercase", className: cxUppercase,
+	                onClick: this._handleClick.bind(this, 'uppercase') },
+	              "Uppercase"
 	            ),
 	            _react2["default"].createElement(
 	              "div",
@@ -20593,6 +20632,212 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _counterComponent = __webpack_require__(171);
+
+	var _counterComponent2 = _interopRequireDefault(_counterComponent);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	var BLACKLISTED_KEYWORDS = ['and', 'the', 'i', 'a', 'of', 'on', 'to', 'is'];
+
+	var ResultStatsComponent = _react2["default"].createClass({
+	  displayName: 'ResultStatsComponent',
+
+	  _calculateReadTime: function () {
+	    function _calculateReadTime(wordCount, averageWordsPerMinute) {
+	      var wordsPerAverage = wordCount / averageWordsPerMinute;
+	      var result = wordsPerAverage.toPrecision(2) + ' min';
+
+	      if (wordsPerAverage < 1) {
+	        result = (wordsPerAverage * 60).toPrecision(2) + ' s';
+	      }
+
+	      return result;
+	    }
+
+	    return _calculateReadTime;
+	  }(),
+	  render: function () {
+	    function render() {
+	      var textEntered = this.props.stringValue;
+	      var wordOccurances = this.props.occurances;
+	      var sortedWordOccurances = [];
+	      var topWordOccurancesLimit = 5;
+	      var topWordOccurances = {};
+	      var topWordsDisplay = null;
+	      var charCount = textEntered.length;
+	      var wordCount = 0;
+	      var sentenceCount = 0;
+	      var readTime = 0;
+	      var averageWordsPerMinute = 275;
+
+	      // Character count
+	      if (charCount > 0) {
+	        wordCount = textEntered.split(' ').length;
+	      }
+
+	      // Word count
+	      if (wordCount > 0) {
+	        sentenceCount = (textEntered.match(/\w[.?!](\s|$)/g) || []).length;
+	        readTime = this._calculateReadTime(wordCount, averageWordsPerMinute);
+	      }
+
+	      // Loop through all word occurances
+	      for (var word in wordOccurances) {
+	        // Check if word is blacklisted from occurances
+	        if (BLACKLISTED_KEYWORDS.indexOf(word) > -1) {
+	          // In the array! do nothing
+	        } else {
+	          sortedWordOccurances.push([word, wordOccurances[word]]);
+	          sortedWordOccurances.sort(function (a, b) {
+	            return a[1] - b[1];
+	          });
+	        }
+	      }
+
+	      // Sort by amount of words appeared
+	      var sortedWordOccurancesCount = sortedWordOccurances.length;
+	      if (sortedWordOccurancesCount > topWordOccurancesLimit) {
+	        topWordOccurances = sortedWordOccurances.slice(sortedWordOccurancesCount - topWordOccurancesLimit, sortedWordOccurancesCount);
+	      } else {
+	        topWordOccurances = sortedWordOccurances;
+	      }
+
+	      // Top five word occurances display
+	      topWordsDisplay = topWordOccurances.map(function (wordData, index) {
+	        var key = "occurance-" + index;
+	        var result = _react2["default"].createElement(
+	          "li",
+	          { key: key, className: "col-1-5" },
+	          _react2["default"].createElement(
+	            "div",
+	            null,
+	            wordData[0]
+	          ),
+	          _react2["default"].createElement(
+	            "div",
+	            { className: "number" },
+	            wordData[1],
+	            _react2["default"].createElement(
+	              "span",
+	              { className: "percentage" },
+	              "(",
+	              Math.round(wordData[1] / wordCount * 100, 2),
+	              "%)"
+	            )
+	          )
+	        );
+
+	        return result;
+	      });
+
+	      return _react2["default"].createElement(
+	        "div",
+	        { className: "result-stats" },
+	        _react2["default"].createElement(
+	          "div",
+	          { className: "col-1-4" },
+	          _react2["default"].createElement(_counterComponent2["default"], { name: "Characters", numberValue: charCount })
+	        ),
+	        _react2["default"].createElement(
+	          "div",
+	          { className: "col-1-4" },
+	          _react2["default"].createElement(_counterComponent2["default"], { name: "Words", numberValue: wordCount })
+	        ),
+	        _react2["default"].createElement(
+	          "div",
+	          { className: "col-1-4" },
+	          _react2["default"].createElement(_counterComponent2["default"], { name: "Sentences", numberValue: sentenceCount })
+	        ),
+	        _react2["default"].createElement(
+	          "div",
+	          { className: "col-1-4" },
+	          _react2["default"].createElement(_counterComponent2["default"], { name: "Read time", numberValue: readTime })
+	        ),
+	        _react2["default"].createElement(
+	          "div",
+	          { className: "col-1-1" },
+	          "Keyword density",
+	          _react2["default"].createElement(
+	            "ul",
+	            null,
+	            topWordsDisplay
+	          )
+	        )
+	      );
+	    }
+
+	    return render;
+	  }()
+	});
+
+	exports["default"] = ResultStatsComponent;
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "_resultStatsComponent.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 171 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	var CounterComponent = _react2["default"].createClass({
+	  displayName: 'CounterComponent',
+
+	  render: function () {
+	    function render() {
+	      return _react2["default"].createElement(
+	        "div",
+	        { className: "counter" },
+	        _react2["default"].createElement(
+	          "div",
+	          null,
+	          this.props.name
+	        ),
+	        _react2["default"].createElement(
+	          "div",
+	          { className: "number" },
+	          this.props.numberValue
+	        )
+	      );
+	    }
+
+	    return render;
+	  }()
+	});
+
+	exports["default"] = CounterComponent;
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "_counterComponent.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 172 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 	var DisplayReversedComponent = _react2["default"].createClass({
@@ -20620,82 +20865,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "_resultReversedComponent.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 171 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _CounterComponent = __webpack_require__(172);
-
-	var _CounterComponent2 = _interopRequireDefault(_CounterComponent);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-	var StatsContainerComponent = _react2["default"].createClass({
-	  displayName: 'StatsContainerComponent',
-
-	  _calculateReadTime: function () {
-	    function _calculateReadTime(wordCount, averageWordsPerMinute) {
-	      var wordsPerAverage = wordCount / averageWordsPerMinute;
-	      var result = wordsPerAverage.toPrecision(2) + ' min';
-
-	      if (wordsPerAverage < 1) {
-	        result = (wordsPerAverage * 60).toPrecision(2) + ' s';
-	      }
-
-	      return result;
-	    }
-
-	    return _calculateReadTime;
-	  }(),
-	  render: function () {
-	    function render() {
-	      var textEntered = this.props.stringValue;
-	      var charCount = textEntered.length;
-	      var wordCount = 0;
-	      var sentenceCount = 0;
-	      var readTime = 0;
-	      var averageWordsPerMinute = 275;
-
-	      if (charCount > 0) {
-	        wordCount = textEntered.split(' ').length;
-	      }
-
-	      if (wordCount > 0) {
-	        sentenceCount = (textEntered.match(/\w[.?!](\s|$)/g) || []).length;
-	        readTime = this._calculateReadTime(wordCount, averageWordsPerMinute);
-	      }
-
-	      return _react2["default"].createElement(
-	        "div",
-	        { className: "stats-container" },
-	        _react2["default"].createElement(_CounterComponent2["default"], { name: "Character count", numberValue: charCount }),
-	        _react2["default"].createElement(_CounterComponent2["default"], { name: "Word count", numberValue: wordCount }),
-	        _react2["default"].createElement(_CounterComponent2["default"], { name: "Sentence count", numberValue: sentenceCount }),
-	        _react2["default"].createElement(_CounterComponent2["default"], { name: "Read time", numberValue: readTime })
-	      );
-	    }
-
-	    return render;
-	  }()
-	});
-
-	exports["default"] = StatsContainerComponent;
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "StatsContainerComponent.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ },
-/* 172 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -20712,23 +20882,18 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var CounterComponent = _react2["default"].createClass({
-	  displayName: 'CounterComponent',
+	var DisplayUppercasedComponent = _react2["default"].createClass({
+	  displayName: 'DisplayUppercasedComponent',
 
 	  render: function () {
 	    function render() {
 	      return _react2["default"].createElement(
 	        "div",
-	        { className: "col-1-4 counter" },
+	        { className: "result-uppercased" },
 	        _react2["default"].createElement(
 	          "div",
-	          { className: "label" },
-	          this.props.name
-	        ),
-	        _react2["default"].createElement(
-	          "div",
-	          null,
-	          this.props.numberValue
+	          { className: "result" },
+	          this.props.stringValue.toUpperCase()
 	        )
 	      );
 	    }
@@ -20737,12 +20902,54 @@
 	  }()
 	});
 
-	exports["default"] = CounterComponent;
+	exports["default"] = DisplayUppercasedComponent;
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "CounterComponent.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "_resultUppercasedComponent.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 173 */
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	var DisplayLowercasedComponent = _react2["default"].createClass({
+	  displayName: 'DisplayLowercasedComponent',
+
+	  render: function () {
+	    function render() {
+	      return _react2["default"].createElement(
+	        "div",
+	        { className: "result-lowercased" },
+	        _react2["default"].createElement(
+	          "div",
+	          { className: "result" },
+	          this.props.stringValue.toLowerCase()
+	        )
+	      );
+	    }
+
+	    return render;
+	  }()
+	});
+
+	exports["default"] = DisplayLowercasedComponent;
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "_resultLowercasedComponent.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 175 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

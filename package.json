@@ -1,7 +1,7 @@
 {
-  "name": "stringStats",
+  "name": "textAnalytics",
   "version": "1.0.0",
-  "description": "Displays relevant stats dependant on input string",
+  "description": "Text Analytics tool",
   "repository": "git@github.com:smikulic/stringStats.git",
   "main": "index.js",
   "scripts": {

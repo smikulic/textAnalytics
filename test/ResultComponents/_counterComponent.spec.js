@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow, mount, render } from 'enzyme';
-import CounterComponent from '../../app/js/StatsComponents/CounterComponent';
+import CounterComponent from '../../app/js/ResultComponents/_counterComponent';
 
 describe("CounterComponent", () => {
   // Use the method 'mount' to perform a full render
@@ -12,8 +12,6 @@ describe("CounterComponent", () => {
 
   it("Contains classes", () => {
     expect(CounterComponentMounted.find('.counter').length).to.equal(1);
-    expect(CounterComponentMounted.find('.col-1-5').length).to.equal(1);
-    expect(CounterComponentMounted.find('.label').length).to.equal(1);
   });
 
   it('Should have name and a numberValue props', () => {

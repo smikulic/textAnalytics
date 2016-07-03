@@ -1,21 +1,62 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+// Colors
+$lightBlue:     #b7f7ff;
+$lightRed:      #ffb7b7;
+
+// Base
+html {
+  height: 100vh;
+  font-family: 'Lato', sans-serif;
+  background-color: #dce7ec;
+}
 body {
   width: 90%;
   max-width: 960px;
   margin: 30px auto;
 }
-
-.col-1-5 {
-  display: inline-block;
-  width: 20%;
-}
-.col-1-4 {
-  display: inline-block;
-  width: 25%;
+::selection {
+  background: $lightBlue;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
 
+  li {
+    list-style-type: none;  
+  }
+}
+
+// Grid
+.col-1-4, .col-2-4, .col-3-4, .col-4-4,
+.col-1-5, .col-2-5, .col-3-5, .col-4-5, .col-5-5 {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+.col-1-4 { width: 25%; }
+.col-2-4 { width: 50%; }
+.col-2-4 { width: 75%; }
+.col-1-5 { width: 20%; }
+.col-2-5 { width: 40%; }
+.col-3-5 { width: 60%; }
+.col-4-5 { width: 80%; }
+.col-1-1 { width: 100%; }
+
+// Utilities
+.label {
+  display: inline-block;
+  width: 200px;
+}
+.result, .number {
+  font-size: 20px;
+  color: $lightRed;
+}
+.percentage {
+  margin-left: 5px;
+  color: rgba($lightRed, 0.75);
+}
 
 // Modules
 @import 'modules/inputComponent';
 @import 'modules/resultContainerComponent';
-@import 'modules/statsContainerComponent';
