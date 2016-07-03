@@ -1,4 +1,5 @@
 import React from "react";
+import DisplayStatsComponent from "./_resultStatsComponent";
 import DisplayReversedComponent from "./_resultReversedComponent";
 import DisplayUppercasedComponent from "./_resultUppercasedComponent";
 import DisplayLowercasedComponent from "./_resultLowercasedComponent";
@@ -22,6 +23,7 @@ class ResultContainerComponent extends React.Component {
 
   render () {
     let display = null;
+    let cxStats = 'result-tabs--tab';
     let cxReverse = 'result-tabs--tab';
     let cxUppercase = 'result-tabs--tab';
     let cxLowercase = 'result-tabs--tab';
@@ -30,25 +32,27 @@ class ResultContainerComponent extends React.Component {
       case 'reverse':
         display = <DisplayReversedComponent stringValue={this.props.stringValue} />;
         cxReverse += ' active';
-        cxUppercase, cxLowercase = 'result-tabs--tab';
         break;
       case 'uppercase':
         display = <DisplayUppercasedComponent stringValue={this.props.stringValue} />;
         cxUppercase += ' active';
-        cxReverse, cxLowercase = 'result-tabs--tab';
         break;
       case 'lowercase':
         display = <DisplayLowercasedComponent stringValue={this.props.stringValue} />;
         cxLowercase += ' active';
-        cxReverse, cxUppercase = 'result-tabs--tab';
         break;
       default:
-        display = null;
+        display = <DisplayStatsComponent stringValue={this.props.stringValue} />;
+        cxStats += ' active';
     }
 
     return (
       <div className="results">
         <div className="result-tabs">
+          <div key="tab-stats" className={cxStats}
+            onClick={this._handleClick.bind(this, 'stats')}>
+            Text Analytics
+          </div>
           <div key="tab-reverse" className={cxReverse}
             onClick={this._handleClick.bind(this, 'reverse')}>
             Reverse

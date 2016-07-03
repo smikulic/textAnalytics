@@ -1,8 +1,8 @@
 import React from "react";
-import CounterComponent from "./CounterComponent";
+import CounterComponent from "./_counterComponent";
 
-var StatsContainerComponent = React.createClass({
-  displayName: 'StatsContainerComponent',
+var ResultStatsComponent = React.createClass({
+  displayName: 'ResultStatsComponent',
 
   _calculateReadTime (wordCount, averageWordsPerMinute) {
     let wordsPerAverage = wordCount / averageWordsPerMinute;
@@ -85,4 +85,4 @@ var StatsContainerComponent = React.createClass({
   }
 });
 
-export default StatsContainerComponent;
+export default ResultStatsComponent;

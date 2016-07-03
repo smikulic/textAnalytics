@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>String stats</title>
+    <title>Text Analytics</title>
     <link rel="stylesheet" type="text/css" href="dist/app.css">
   </head>
   <body>

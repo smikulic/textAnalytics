@@ -28,7 +28,7 @@ var InputComponent = React.createClass({
   render () {
     return (
       <div className="input-text">
-        <textarea placeholder="Input text here..." onChange={this._handleChange}></textarea>
+        <textarea placeholder="Enter text (copy and paste is fine) here..." onChange={this._handleChange}></textarea>
       </div>
     );
   }

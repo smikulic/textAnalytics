@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow, mount, render } from 'enzyme';
-import CounterComponent from '../../app/js/StatsComponents/CounterComponent';
+import CounterComponent from '../../app/js/ResultComponents/_counterComponent';
 
 describe("CounterComponent", () => {
   // Use the method 'mount' to perform a full render

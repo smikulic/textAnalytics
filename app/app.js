@@ -2,7 +2,6 @@ import React from "react";
 import ReactDom from "react-dom";
 import InputComponent from "./js/MainComponents/InputComponent";
 import ResultContainerComponent from "./js/ResultComponents/ResultContainerComponent";
-import StatsContainerComponent from "./js/StatsComponents/StatsContainerComponent";
 
 require("./styles/app.scss");
 
@@ -30,8 +29,7 @@ var App = React.createClass({
     return (
       <div className="main-container">
           <InputComponent updateInput={this._handleInputUpdate} />
-          <ResultContainerComponent stringValue={stringValue} />
-          <StatsContainerComponent stringValue={stringValue} occurances={occurances} />
+          <ResultContainerComponent stringValue={stringValue} occurances={occurances} />
       </div>
     );
   }
