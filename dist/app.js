@@ -20716,11 +20716,15 @@
 	          ),
 	          _react2["default"].createElement(
 	            "div",
-	            null,
+	            { className: "number" },
 	            wordData[1],
-	            " (",
-	            Math.round(wordData[1] / wordCount * 100, 2),
-	            "%)"
+	            _react2["default"].createElement(
+	              "span",
+	              { className: "percentage" },
+	              "(",
+	              Math.round(wordData[1] / wordCount * 100, 2),
+	              "%)"
+	            )
 	          )
 	        );
 
@@ -20804,7 +20808,7 @@
 	        ),
 	        _react2["default"].createElement(
 	          "div",
-	          null,
+	          { className: "number" },
 	          this.props.numberValue
 	        )
 	      );

@@ -50,6 +50,14 @@ ul {
   display: inline-block;
   width: 200px; }
 
+.result, .number {
+  font-size: 20px;
+  color: #ffb7b7; }
+
+.percentage {
+  margin-left: 5px;
+  color: rgba(255, 183, 183, 0.75); }
+
 .input-text textarea {
   padding: 15px;
   margin-bottom: 15px;
@@ -68,8 +76,10 @@ ul {
 .results .result-tabs .result-tabs--tab {
   display: inline-block;
   margin-right: 15px;
+  padding: 5px;
+  border-radius: 3px;
   cursor: pointer; }
 
 .results .result-tabs .result-tabs--tab:hover,
 .results .result-tabs .result-tabs--tab.active {
-  border-bottom: 1px solid black; }
+  background-color: #d8d8d8; }
