@@ -6,7 +6,7 @@ var FooterComponent = React.createClass({
   render () {
     return (
       <div className="footer">
-        <div className="fb-like" data-href="https://www.facebook.com/Text-Inspect-512344602288855/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+        <div className="fb-like" data-href="https://www.facebook.com/Word-Fluff-512344602288855/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
         <span className="donate-text">Buy me a coffee!</span>
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" className="donate-button">
         <input type="hidden" name="cmd" value="_s-xclick" />
