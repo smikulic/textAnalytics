@@ -68,13 +68,13 @@
 
 	var _HeaderComponent2 = _interopRequireDefault(_HeaderComponent);
 
-	var _EditorComponent = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./js/MainComponents/EditorComponent\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _FooterComponent = __webpack_require__(183);
 
-	var _EditorComponent2 = _interopRequireDefault(_EditorComponent);
+	var _FooterComponent2 = _interopRequireDefault(_FooterComponent);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	__webpack_require__(183);
+	__webpack_require__(184);
 
 	var App = _react2["default"].createClass({
 	  displayName: 'App',
@@ -109,7 +109,8 @@
 	        { className: "main-container" },
 	        _react2["default"].createElement(_HeaderComponent2["default"], null),
 	        _react2["default"].createElement(_InputComponent2["default"], { updateInput: this._handleInputUpdate }),
-	        _react2["default"].createElement(_ResultContainerComponent2["default"], { stringValue: stringValue, occurances: occurances })
+	        _react2["default"].createElement(_ResultContainerComponent2["default"], { stringValue: stringValue, occurances: occurances }),
+	        _react2["default"].createElement(_FooterComponent2["default"], null)
 	      );
 	    }
 
@@ -22080,6 +22081,57 @@
 
 /***/ },
 /* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	var FooterComponent = _react2["default"].createClass({
+	  displayName: 'FooterComponent',
+
+	  render: function () {
+	    function render() {
+	      return _react2["default"].createElement(
+	        "div",
+	        { className: "footer" },
+	        _react2["default"].createElement("div", { className: "fb-like", "data-href": "https://www.facebook.com/Text-Inspect-512344602288855/", "data-layout": "button_count", "data-action": "like", "data-size": "small", "data-show-faces": "false", "data-share": "true" }),
+	        _react2["default"].createElement(
+	          "span",
+	          { className: "donate-text" },
+	          "Buy me a coffee!"
+	        ),
+	        _react2["default"].createElement(
+	          "form",
+	          { action: "https://www.paypal.com/cgi-bin/webscr", method: "post", target: "_top", className: "donation-button" },
+	          _react2["default"].createElement("input", { type: "hidden", name: "cmd", value: "_s-xclick" }),
+	          _react2["default"].createElement("input", { type: "hidden", name: "hosted_button_id", value: "K5TMCPWCLCC46" }),
+	          _react2["default"].createElement("input", { type: "image", src: "https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif", border: "0", name: "submit", alt: "PayPal - The safer, easier way to pay online!" }),
+	          _react2["default"].createElement("img", { alt: "", border: "0", src: "https://www.paypalobjects.com/de_DE/i/scr/pixel.gif", width: "1", height: "1" })
+	        )
+	      );
+	    }
+
+	    return render;
+	  }()
+	});
+
+	exports["default"] = FooterComponent;
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/smikulic/javascript/stringStats/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "FooterComponent.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 184 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
