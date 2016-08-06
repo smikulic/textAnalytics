@@ -52,11 +52,14 @@ ul {
 
 .result, .number {
   font-size: 20px;
-  color: #ffb7b7; }
+  color: #6f71de; }
 
 .percentage {
   margin-left: 5px;
-  color: rgba(255, 183, 183, 0.75); }
+  color: rgba(111, 113, 222, 0.75); }
+
+hr.bordered {
+  border-top: 1px dotted rgba(111, 113, 222, 0.75); }
 
 .input-text textarea {
   padding: 15px;
