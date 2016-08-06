@@ -4,4 +4,4 @@
 [![bitHound Code](https://www.bithound.io/github/smikulic/stringStats/badges/code.svg)](https://www.bithound.io/github/smikulic/stringStats)
 
 
-Try it [Here](https://smikulic.github.io/stringStats/)
+Try it [Here](https://smikulic.github.io/textAnalytics/)
