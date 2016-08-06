@@ -22105,7 +22105,7 @@
         return _react2["default"].createElement(
           "div",
           { className: "footer" },
-          _react2["default"].createElement("div", { className: "fb-like", "data-href": "https://www.facebook.com/Text-Inspect-512344602288855/", "data-layout": "button_count", "data-action": "like", "data-size": "small", "data-show-faces": "false", "data-share": "true" }),
+          _react2["default"].createElement("div", { className: "fb-like", "data-href": "https://www.facebook.com/Word-Fluff-512344602288855/", "data-layout": "button_count", "data-action": "like", "data-size": "small", "data-show-faces": "false", "data-share": "true" }),
           _react2["default"].createElement(
             "span",
             { className: "donate-text" },
