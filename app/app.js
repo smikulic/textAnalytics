@@ -2,6 +2,8 @@ import React from "react";
 import ReactDom from "react-dom";
 import InputComponent from "./js/MainComponents/InputComponent";
 import ResultContainerComponent from "./js/ResultComponents/ResultContainerComponent";
+import HeaderComponent from "./js/MainComponents/HeaderComponent";
+import FooterComponent from "./js/MainComponents/FooterComponent";
 
 require("./styles/app.scss");
 
@@ -28,8 +30,10 @@ var App = React.createClass({
 
     return (
       <div className="main-container">
+          <HeaderComponent />
           <InputComponent updateInput={this._handleInputUpdate} />
           <ResultContainerComponent stringValue={stringValue} occurances={occurances} />
+          <FooterComponent />
       </div>
     );
   }

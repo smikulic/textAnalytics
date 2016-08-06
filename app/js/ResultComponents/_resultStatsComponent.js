@@ -82,6 +82,7 @@ var ResultStatsComponent = React.createClass({
 
     return (
       <div className="result-stats">
+        <hr className="bordered" />
         <div className="col-1-4">
           <CounterComponent name="Characters" numberValue={charCount} />
         </div>
@@ -94,6 +95,7 @@ var ResultStatsComponent = React.createClass({
         <div className="col-1-4">
           <CounterComponent name="Read time" numberValue={readTime} />
         </div>
+        <hr className="bordered" />
         <div className="col-1-1">
           Keyword density
           <ul>{topWordsDisplay}</ul>

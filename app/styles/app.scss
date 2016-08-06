@@ -1,7 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
 
 // Colors
+$lightGray:     #cccccc;
 $lightBlue:     #b7f7ff;
+$darkBlue:      #6f71de;
 $lightRed:      #ffb7b7;
 
 // Base
@@ -50,12 +52,19 @@ ul {
 }
 .result, .number {
   font-size: 20px;
-  color: $lightRed;
+  color: $darkBlue;
 }
 .percentage {
   margin-left: 5px;
-  color: rgba($lightRed, 0.75);
+  color: rgba($darkBlue, 0.75);
 }
+
+hr.bordered {
+  border-top: 1px dotted rgba($darkBlue, 0.75);
+}
+
+// Layout
+@import 'layout/footer';
 
 // Modules
 @import 'modules/inputComponent';
