@@ -22113,7 +22113,7 @@
           ),
           _react2["default"].createElement(
             "form",
-            { action: "https://www.paypal.com/cgi-bin/webscr", method: "post", target: "_top", className: "donation-button" },
+            { action: "https://www.paypal.com/cgi-bin/webscr", method: "post", target: "_top", className: "donate-button" },
             _react2["default"].createElement("input", { type: "hidden", name: "cmd", value: "_s-xclick" }),
             _react2["default"].createElement("input", { type: "hidden", name: "hosted_button_id", value: "K5TMCPWCLCC46" }),
             _react2["default"].createElement("input", { type: "image", src: "https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif", border: "0", name: "submit", alt: "PayPal - The safer, easier way to pay online!" }),
