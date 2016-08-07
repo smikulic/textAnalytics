@@ -5,7 +5,9 @@ import {blue500, white} from 'material-ui/styles/colors';
 const styles = {
   textareaStyle: {
     borderColor: blue500,
-    backgroundColor: white
+    backgroundColor: white,
+    padding: '5px',
+    fontSize: '13px',
   },
 };
 

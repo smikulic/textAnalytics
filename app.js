@@ -29058,7 +29058,9 @@
   var styles = {
     textareaStyle: {
       borderColor: _colors.blue500,
-      backgroundColor: _colors.white
+      backgroundColor: _colors.white,
+      padding: '5px',
+      fontSize: '13px'
     }
   };
 
