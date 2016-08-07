@@ -1,11 +1,19 @@
 import React from "react";
 import ReactDom from "react-dom";
-import InputComponent from "./js/MainComponents/InputComponent";
-import ResultContainerComponent from "./js/ResultComponents/ResultContainerComponent";
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import HeaderComponent from "./js/MainComponents/HeaderComponent";
 import FooterComponent from "./js/MainComponents/FooterComponent";
+import InputComponent from "./js/MainComponents/InputComponent";
+import ResultContainerComponent from "./js/ResultComponents/ResultContainerComponent";
+
+// Material components
 
 require("./styles/app.scss");
+
+// Needed for onTouchTap 
+// http://stackoverflow.com/a/34015469/988941 
+injectTapEventPlugin();
 
 var App = React.createClass({
   displayName: 'App',
@@ -29,12 +37,14 @@ var App = React.createClass({
     let occurances = this.state.occurances;
 
     return (
-      <div className="main-container">
-          <HeaderComponent />
-          <InputComponent updateInput={this._handleInputUpdate} />
-          <ResultContainerComponent stringValue={stringValue} occurances={occurances} />
-          <FooterComponent />
-      </div>
+      <MuiThemeProvider>
+        <div className="main-container">
+            <HeaderComponent />
+            <InputComponent updateInput={this._handleInputUpdate} />
+            <ResultContainerComponent stringValue={stringValue} occurances={occurances} />
+            <FooterComponent />
+        </div>
+      </MuiThemeProvider>
     );
   }
 });
