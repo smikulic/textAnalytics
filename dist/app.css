@@ -6,7 +6,7 @@
 body {
   width: 90%;
   max-width: 960px;
-  margin: 30px auto; }
+  margin: 15px auto; }
 
 ::selection {
   background: #b7f7ff; }
@@ -28,7 +28,7 @@ ul {
 .col-2-4 {
   width: 50%; }
 
-.col-2-4 {
+.col-3-4 {
   width: 75%; }
 
 .col-1-5 {
@@ -50,26 +50,17 @@ ul {
   display: inline-block;
   width: 200px; }
 
-.result, .number {
-  font-size: 20px;
-  color: #6f71de; }
-
-.percentage {
-  margin-left: 5px;
-  color: rgba(111, 113, 222, 0.75); }
-
 hr.bordered {
   border-top: 1px dotted rgba(111, 113, 222, 0.75); }
 
 .footer {
-  position: fixed;
-  bottom: 15px;
+  position: relative;
+  margin-top: 15px;
   width: 90%;
   max-width: 960px; }
 
 .footer .donate-text {
   display: inline-block;
-  margin-left: 120px;
   height: 16px;
   line-height: 11px;
   color: #8d8d8d;
@@ -77,35 +68,30 @@ hr.bordered {
 
 .footer .donate-button {
   position: absolute;
-  margin-left: 212px;
+  margin-left: 95px;
   bottom: -3px; }
 
 .footer .fb_iframe_widget {
   position: absolute;
-  left: 0;
+  left: 182px;
   bottom: 0; }
 
 .input-text textarea {
-  padding: 15px;
-  margin-bottom: 15px;
-  width: 100%;
-  height: 200px;
-  font-size: 14px;
-  border: 1px dashed #cccccc;
-  outline: 0;
-  box-sizing: border-box;
-  resize: none; }
-
-.results .result-tabs {
-  margin-bottom: 15px; }
-
-.results .result-tabs .result-tabs--tab {
-  display: inline-block;
-  margin-right: 15px;
-  padding: 5px;
-  border-radius: 3px;
-  cursor: pointer; }
-
-.results .result-tabs .result-tabs--tab:hover,
-.results .result-tabs .result-tabs--tab.active {
-  background-color: #d8d8d8; }
+  /*border: 1px solid #EEEEEE;
+    box-shadow: 1px 1px 0 #DDDDDD;
+    display: block;
+    font-size: 13px;
+    line-height: 22px;
+    margin: 2% auto;
+    padding: 4px 22px 4px 22px;
+    outline: 0;
+    box-sizing: border-box;
+    resize: none;
+    height: 300px;
+    width: 100%;
+    
+    background-image: -moz-linear-gradient(top , transparent, transparent 21px,#E7EFF8 0px); 
+    background-image: -webkit-linear-gradient(top , transparent, transparent 21px,#E7EFF8 0);
+    
+    -webkit-background-size:  100% 22px;
+    background-size: 100% 22px;*/ }
