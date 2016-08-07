@@ -1,4 +1,14 @@
 import React from "react";
+import TextField from 'material-ui/TextField';
+import {blue500, white} from 'material-ui/styles/colors';
+
+const styles = {
+  textareaStyle: {
+    borderColor: blue500,
+    backgroundColor: white
+  },
+};
+
 
 var InputComponent = React.createClass({
   displayName: 'InputComponent',
@@ -28,7 +38,15 @@ var InputComponent = React.createClass({
   render () {
     return (
       <div className="input-text">
-        <textarea placeholder="Enter text (copy and paste is fine) here..." onChange={this._handleChange}></textarea>
+        <TextField
+          floatingLabelText="Enter text (copy and paste is fine) here..."
+          onChange={this._handleChange}
+          multiLine={true}
+          rows={10}
+          rowsMax={10}
+          fullWidth={true}
+          textareaStyle={styles.textareaStyle}
+        />
       </div>
     );
   }

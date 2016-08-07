@@ -1,13 +1,12 @@
 .footer {
-  position: fixed;
-  bottom: 15px;
+  position: relative;
+  margin-top: 15px;
   width: 90%;
   max-width: 960px;
 }
 
 .footer .donate-text {
   display: inline-block;
-  margin-left: 120px;
   height: 16px;
   line-height: 11px;
   color: #8d8d8d;
@@ -16,12 +15,12 @@
 
 .footer .donate-button {
   position: absolute;
-  margin-left: 212px;
+  margin-left: 95px;
   bottom: -3px;
 }
 
 .footer .fb_iframe_widget {
   position: absolute;
-  left: 0;
+  left: 182px;
   bottom: 0;
 }
