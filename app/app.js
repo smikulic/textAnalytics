@@ -7,8 +7,6 @@ import FooterComponent from "./js/MainComponents/FooterComponent";
 import InputComponent from "./js/MainComponents/InputComponent";
 import ResultContainerComponent from "./js/ResultComponents/ResultContainerComponent";
 
-// Material components
-
 require("./styles/app.scss");
 
 // Needed for onTouchTap 

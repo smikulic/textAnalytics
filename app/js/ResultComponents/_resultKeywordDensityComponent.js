@@ -42,7 +42,8 @@ var ResultStatsComponent = React.createClass({
         sortedWordOccurances.push([word, wordOccurances[word]]);
         sortedWordOccurances.sort(
           function(a, b) {
-            return a[1] - b[1]
+            //return a[1] - b[1] // Ascending
+            return b[1] - a[1] // Descending
           }
         );
       }
