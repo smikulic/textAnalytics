@@ -2,7 +2,7 @@
   "name": "textAnalytics",
   "version": "1.0.0",
   "description": "Text Analytics tool",
-  "repository": "git@github.com:smikulic/stringStats.git",
+  "repository": "git@github.com:smikulic/textAnalytics.git",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/helpers/browser.js test/**/**.spec.js --compilers css:test/helpers/nullCompiler.js",
