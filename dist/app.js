@@ -30963,6 +30963,7 @@
 	      if (wordCount > 0) {
 	        sentenceCount = (textEntered.match(/\w[.?!](\s|$)/g) || []).length;
 	        readTime = this._calculateReadTime(wordCount, averageWordsPerMinute);
+	        charCount -= wordCount - 1;
 	      }
 
 	      return _react2['default'].createElement(
